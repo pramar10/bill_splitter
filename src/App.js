@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import TextInput from "./common/TextInput";
+import CreateGroup from "./components/CreateGroup";
+import Group from "./components/Group";
+import Header from "./components/Header";
+import PersonCard from "./components/PersonCard";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from "./redux/user";
 function App() {
+  const user = useSelector(selectUser);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          {user && (
+            <>
+              <Route path="/create" element={<CreateGroup />} />
+              <Route path="/member" element={<Group />} />
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

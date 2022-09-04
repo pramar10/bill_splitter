@@ -1,0 +1,20 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/index.html",
+        "destination": "https://bill-splitter-1ddc3.web.app/login"
+      },
+      {
+        "source": "**",
+        "destination": "https://bill-splitter-1ddc3.web.app/create"
+      }
+    ]
+  }
+}
